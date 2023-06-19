@@ -52,7 +52,7 @@ const AuthorBooks: FC<IAuthorBooksProps> = ({ authorId, authorName }) => {
                 details={[
                   `Publication date: ${book.publicationDate}`,
                   `Number of pages: ${book.numberOfPages}`,
-                  `Publisher: ${book.publisher}`,
+                  `Publisher: ${book.publisher || "unknown"}`,
                 ]}
               />
             ))}
