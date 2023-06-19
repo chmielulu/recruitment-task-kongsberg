@@ -4,10 +4,10 @@ export interface IBook {
   id: number;
   authorId: number;
   title: string;
-  publicationDate: string;
   coverImage: string;
-  numberOfPages: number;
-  publisher: string;
+  publicationDate: string | null;
+  numberOfPages: number | null;
+  publisher: string | null;
 }
 
 export type IQueryAuthorBooks = IBook[];

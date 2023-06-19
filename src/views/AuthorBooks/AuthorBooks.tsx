@@ -50,8 +50,8 @@ const AuthorBooks: FC<IAuthorBooksProps> = ({ authorId, authorName }) => {
                 coverImage={book.coverImage}
                 title={book.title}
                 details={[
-                  `Publication date: ${book.publicationDate}`,
-                  `Number of pages: ${book.numberOfPages}`,
+                  `Publication date: ${book.publicationDate || "unknown"}`,
+                  `Number of pages: ${book.numberOfPages || "unknown"}`,
                   `Publisher: ${book.publisher || "unknown"}`,
                 ]}
               />
