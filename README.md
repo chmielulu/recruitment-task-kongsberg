@@ -1,11 +1,16 @@
 # Recruitment task for Kongsberg company
 
 ## What does this application do?
+
 This application fetch data about authors and the books they have written from [My JSON Server API](https://my-json-server.typicode.com/chmielulu/recruitment-task-db) and then displays an interactive table with a list of authors. Each author's row in the table can be clicked to display the details of that author.
 
-
-
 Link to the application preview: https://recruitment-task-kongsberg.jacobprogrammer.dev
+
+## How to run the application locally?
+
+- `yarn` or `npm install`
+- `yarn start` or `npm run start`
+- The application can be viewed at `http://localhost:3000`
 
 ## What dependencies does this application use and for what purpuse?
 
