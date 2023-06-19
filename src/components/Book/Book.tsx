@@ -10,7 +10,12 @@ export interface IBookProps {
 }
 
 const Book: FC<IBookProps> = ({ details, title, coverImage }) => (
-  <motion.div className={styles.wrapper} data-testid="book">
+  <motion.div
+    className={styles.wrapper}
+    data-testid="book"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+  >
     <img src={coverImage} alt={title} className={styles.image} />
     <div className={styles.contentWrapper}>
       <h3 className={cx([styles.title, title.length > 80 && "longText"])}>
