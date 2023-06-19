@@ -1,46 +1,45 @@
-# Getting Started with Create React App
+# Recruitment task for Kongsberg company
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## What does this application do?
+This application fetch data about authors and the books they have written from [My JSON Server API](https://my-json-server.typicode.com/chmielulu/recruitment-task-db) and then displays an interactive table with a list of authors. Each author's row in the table can be clicked to display the details of that author.
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+Link to the application preview: https://recruitment-task-kongsberg.jacobprogrammer.dev
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## What dependencies does this application use and for what purpuse?
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [classnames](https://github.com/JedWatson/classnames) - Used for joining classNames together
+- [framer-motion](https://github.com/framer/motion) - Used for cool animations
+- [normalize.css](https://github.com/necolas/normalize.css/) - Used for CSS normalization
+- [react-router-dom](https://reactrouter.com/en/main) - Used for routing
 
-### `npm test`
+## Project structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+All application files are placed in the `src` directory
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **src/api - Contains the hooks that allow fetching data from the API. All hooks use `useAPIQuery` hook.**
+  - `useAuthors` - this hook fetches all authors from the API
+  - `useAuthorBooks` - this hook fetches all books of the specific author from the API
+- **src/hooks - Contains the global hooks**
+  - `useAPIQuery` - This hook allows making fetch requests to the specific API target
+- **src/components - Contains the global components**
+  - `Book` - Renders book
+  - `Breadcrumb` - Renders breadcrumb navigation
+  - `Button` - Renders a button. HTML element can be modified using `as` property. (e.g. as="a")
+  - `Footer` - Renders the footer
+  - `LoadingIcon` - Renders an SVG with loading animation
+  - `Logo` - Renders the application logo
+  - `Table` - Renders a table
+- **src/routes/routes.ts - Contains the routes of the application**
+- **src/theme - Contains the global styles** 
+- **src/utils - Contains global utilities**
+  - `camelCaseToNormalText` - Converts camel case text to normal text (e.g., "helloWorld" to "Hello world")
+  - `getAuthorName` - Returns the name of a specific author from the authors query array
+  - `mapQueryAuthorsToTableItems` - Transforms the authors query array into table-like data
+- **src/views - Here are all views/routes of the application**
+  - `Root` - The main application component that specifies all global components and routes
+  - `Home` - The "/" route
+  - `NotFound` - The component for 404 errors
+  - `ListOfAuthors` -  The component for "/list-of-authors" and "/list-of-authors/:authorId" routes. It displays a table with authors and renders `AuthorBooks` when `authorId` is specified in the URL
+  - `AuthorBooks` - The component for "/list-of-authors/:authorId" route. It displays all books of the author.

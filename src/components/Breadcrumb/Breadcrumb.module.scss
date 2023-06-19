@@ -1,0 +1,26 @@
+.wrapper {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.item {
+  font-weight: 500;
+  color: var(--neutral3);
+
+  &:not(:first-of-type)::before {
+    content: ">";
+    margin-right: 5px;
+  }
+}
+
+.link {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -1,0 +1,22 @@
+.wrapper {
+  flex: 1;
+  max-width: 540px;
+}
+
+.headline {
+  margin: -20px 0 30px;
+  font-size: 3.2rem;
+  padding-top: 20px;
+}
+
+.booksWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (min-width: 1281px) {
+  .wrapper {
+    width: 540px;
+  }
+}

@@ -1,0 +1,36 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-size: 1.6rem;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: 'Inter', 'Helvetica', 'Roboto', sans-serif;
+}
+
+a {
+    color: inherit;
+}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: space-between;
+    gap: 120px;
+}
+
+@media (max-width: 1280px) {
+    .main-wrapper {
+        gap: 40px;
+    }
+}
