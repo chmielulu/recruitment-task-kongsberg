@@ -14,7 +14,8 @@ export type IQueryAuthorBooks = IBook[];
 
 export const useAuthorBooks = (authorId: number) => {
   const { data, isLoading, isError } = useAPIQuery<IQueryAuthorBooks>(
-    `https://my-json-server.typicode.com/chmielulu/recruitment-task-db/books?authorId=${authorId}`
+    `https://my-json-server.typicode.com/chmielulu/recruitment-task-db/books?authorId=${authorId}`,
+    `author-${authorId}-books`
   );
 
   if (!isLoading && !Array.isArray(data)) {

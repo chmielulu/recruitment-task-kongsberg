@@ -10,10 +10,11 @@ export type IQueryAuthors = IAuthor[];
 
 export const useAuthors = () => {
   const { data, isLoading, isError } = useAPIQuery<IQueryAuthors>(
-    "https://my-json-server.typicode.com/chmielulu/recruitment-task-db/authors"
+    "https://my-json-server.typicode.com/chmielulu/recruitment-task-db/authors",
+    "authors"
   );
 
-  if (!isLoading && !Array.isArray(data)) {
+  if (data && !Array.isArray(data)) {
     return { data: null, isError: true, isLoading };
   }
 
