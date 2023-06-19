@@ -119,10 +119,10 @@ test("it displays unknown publisher if it's null", async () => {
             id: 1,
             authorId: 1,
             title: "Clean Code: A Handbook of Agile Software Craftsmanship",
-            publicationDate: "2010-02-19",
+            publicationDate: null,
             coverImage:
               "https://m.media-amazon.com/images/I/41xShlnTZTL._SX376_BO1,204,203,200_.jpg",
-            numberOfPages: 464,
+            numberOfPages: null,
             publisher: null,
           },
         ]),
@@ -136,6 +136,12 @@ test("it displays unknown publisher if it's null", async () => {
 
   const loadingIcon = screen.getByTestId("loading-icon");
   expect(loadingIcon).toBeInTheDocument();
+
+  const publicationDate = await screen.findByText("Publication date: unknown");
+  expect(authorBooks).toContainElement(publicationDate);
+
+  const numberOfPages = await screen.findByText("Number of pages: unknown");
+  expect(authorBooks).toContainElement(numberOfPages);
 
   const publisher = await screen.findByText("Publisher: unknown");
   expect(authorBooks).toContainElement(publisher);
