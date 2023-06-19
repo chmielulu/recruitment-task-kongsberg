@@ -15,7 +15,7 @@ interface IAuthorBooksProps {
 
 const AuthorBooks: FC<IAuthorBooksProps> = ({ authorId, authorName }) => {
   const { data, isLoading, isError } = useAuthorBooks(+authorId);
-  const { ref, handleAnimationComplete } = useScrollToHeadline();
+  const { ref, scrollToHeadline } = useScrollToHeadline();
 
   let loadingInfo: React.ReactNode | null;
   let isData = data && data.length > 0;
@@ -36,7 +36,7 @@ const AuthorBooks: FC<IAuthorBooksProps> = ({ authorId, authorName }) => {
         Books by {authorName}
       </h2>
       {loadingInfo}
-      <AnimatePresence onExitComplete={handleAnimationComplete}>
+      <AnimatePresence onExitComplete={scrollToHeadline}>
         {isData && (
           <motion.div
             className={styles.booksWrapper}

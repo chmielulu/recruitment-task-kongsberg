@@ -5,7 +5,7 @@ export const useScrollToHeadline = () => {
 
   return {
     ref: headline,
-    handleAnimationComplete: () => {
+    scrollToHeadline: () => {
       if (window.innerWidth < 1280 && headline.current) {
         headline.current.scrollIntoView({ behavior: "smooth" });
       }

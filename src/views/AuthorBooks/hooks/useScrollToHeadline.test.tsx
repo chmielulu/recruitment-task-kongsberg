@@ -2,15 +2,15 @@ import { render } from "@testing-library/react";
 import { useScrollToHeadline } from "./useScrollToHeadline";
 import { useEffect } from "react";
 
-it("it scrolls to element when fn is executed", () => {
+test("it scrolls to element when fn is executed", () => {
   window.HTMLElement.prototype.scrollIntoView = jest.fn();
 
   const TestComponent = () => {
-    const { ref, handleAnimationComplete } = useScrollToHeadline();
+    const { ref, scrollToHeadline } = useScrollToHeadline();
 
     useEffect(() => {
-      handleAnimationComplete();
-    }, [handleAnimationComplete]);
+      scrollToHeadline();
+    }, [scrollToHeadline]);
 
     return (
       <div>
