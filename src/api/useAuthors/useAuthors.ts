@@ -17,5 +17,5 @@ export const useAuthors = () => {
     return { data: null, isError: true, isLoading };
   }
 
-  return { data, isLoading, isError: false };
+  return { data, isLoading, isError };
 };
