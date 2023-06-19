@@ -1,16 +1,20 @@
 import { renderHook } from "@testing-library/react-hooks";
 import { useAuthorBooks } from "./useAuthorBooks";
 
+beforeEach(() => {
+  window.localStorage.clear();
+});
+
 test("if server didn't return an array, then isError is still true", async () => {
   // @ts-ignore
   global.fetch = jest.fn(() => Promise.resolve({ json: Promise.resolve({}) }));
-  const { result, waitForNextUpdate } = renderHook(() => useAuthorBooks(1));
+  const { result, waitFor } = renderHook(() => useAuthorBooks(1));
 
   expect(result.current.data).toEqual(null);
   expect(result.current.isLoading).toEqual(true);
   expect(result.current.isError).toEqual(false);
 
-  await waitForNextUpdate();
+  await waitFor(() => expect(result.current.isLoading).toEqual(false));
 
   expect(result.current.data).toEqual(null);
   expect(result.current.isLoading).toEqual(false);
@@ -45,9 +49,9 @@ describe("when data was retrieved", () => {
   });
 
   test("it sets data to state and update isError, isLoading", async () => {
-    const { result, waitForNextUpdate } = renderHook(() => useAuthorBooks(1));
+    const { result, waitFor } = renderHook(() => useAuthorBooks(1));
 
-    await waitForNextUpdate();
+    await waitFor(() => expect(result.current.data).not.toEqual(null));
     expect(result.current.isError).toEqual(false);
     expect(result.current.data).toEqual(data);
     expect(result.current.isLoading).toEqual(false);
@@ -73,8 +77,8 @@ describe("when unable to connect to the server", () => {
   });
 
   test("it sets isError to true", async () => {
-    const { result, waitForNextUpdate } = renderHook(() => useAuthorBooks(1));
-    await waitForNextUpdate();
+    const { result, waitFor } = renderHook(() => useAuthorBooks(1));
+    await waitFor(() => expect(result.current.isLoading).toEqual(false));
     expect(result.current.isError).toEqual(true);
     expect(result.current.data).toEqual(null);
     expect(result.current.isLoading).toEqual(false);

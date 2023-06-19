@@ -9,6 +9,10 @@ const renderListOfAuthors = () =>
     </BrowserRouter>
   );
 
+beforeEach(() => {
+  window.localStorage.clear();
+});
+
 test("it renders", () => {
   //@ts-ignore
   global.fetch = jest.fn(() =>
