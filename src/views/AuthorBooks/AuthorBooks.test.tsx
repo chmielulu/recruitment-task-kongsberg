@@ -97,11 +97,7 @@ test("it displays error when data from the API is an empty array", async () => {
 test("it displays error when cannot connect to the API", async () => {
   global.fetch = jest.fn(() => Promise.reject(new Error("test")));
 
-  render(
-    <BrowserRouter>
-      <AuthorBooks authorId="1" authorName="Johny Rambo" />
-    </BrowserRouter>
-  );
+  renderAuthorBooks();
 
   const authorBooks = screen.getByTestId("author-books");
   expect(authorBooks).toBeInTheDocument();
@@ -111,4 +107,36 @@ test("it displays error when cannot connect to the API", async () => {
 
   const err = await screen.findByText("Something went wrong...");
   expect(authorBooks).toContainElement(err);
+});
+
+test("it displays unknown publisher if it's null", async () => {
+  // @ts-ignore
+  global.fetch = jest.fn(() =>
+    Promise.resolve({
+      json: () =>
+        Promise.resolve([
+          {
+            id: 1,
+            authorId: 1,
+            title: "Clean Code: A Handbook of Agile Software Craftsmanship",
+            publicationDate: "2010-02-19",
+            coverImage:
+              "https://m.media-amazon.com/images/I/41xShlnTZTL._SX376_BO1,204,203,200_.jpg",
+            numberOfPages: 464,
+            publisher: null,
+          },
+        ]),
+    })
+  );
+
+  renderAuthorBooks();
+
+  const authorBooks = screen.getByTestId("author-books");
+  expect(authorBooks).toBeInTheDocument();
+
+  const loadingIcon = screen.getByTestId("loading-icon");
+  expect(loadingIcon).toBeInTheDocument();
+
+  const publisher = await screen.findByText("Publisher: unknown");
+  expect(authorBooks).toContainElement(publisher);
 });
